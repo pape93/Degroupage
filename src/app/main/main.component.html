@@ -1,0 +1,27 @@
+<div *ngIf="!isLoggedIn">
+    <h2>Login</h2>
+    <form (submit)="login($event)">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </div>
+  
+  <div *ngIf="isLoggedIn">
+    <h2>Convert Excel to XML</h2>
+    <form (submit)="convertFileToXML()">
+      <div>
+        <label for="file">Select xlsx file:</label>
+        <input type="file" id="file" (change)="onFileSelected($event)" accept=".xlsx" required />
+      </div>
+      <button type="submit">Convert to XML</button>
+    </form>
+  </div>
+  

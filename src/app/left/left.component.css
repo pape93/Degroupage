@@ -1,0 +1,26 @@
+aside {
+    width: 250px;
+    background-color: #f0f0f0;
+    padding: 1rem;
+  }
+  
+  aside ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  aside li {
+    margin-bottom: 0.5rem;
+  }
+  
+  aside a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  aside a:hover {
+    color: #4CAF50;
+  }
+  
