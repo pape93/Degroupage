@@ -1,1 +1,1 @@
-web: npx serve -s dist/degroupage -l 3000
+web: npx serve -s dist/Degroupage -l 3000
