@@ -9,7 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 // Replace with your MongoDB connection string
-const uri = 'mongodb://localhost:27017/degroup';
+const uri = 'mongodb+srv://pape93:tTNvRtDrSxBRAEZC@cluster0.quynr8t.mongodb.net/degroup'; 
+//mongosh "mongodb+srv://cluster0.quynr8t.mongodb.net/Cluster0" --apiVersion 1 --username pape93 --password tTNvRtDrSxBRAEZC
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 
