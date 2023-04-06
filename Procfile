@@ -1,1 +1,1 @@
-web: npx serve -s dist/Degroupage -l ${PORT:-3000}
+web: npm run serve
