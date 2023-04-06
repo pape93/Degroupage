@@ -1,1 +1,1 @@
-web: npx serve -s dist/Degroupage -l ${PORT}
+web: npx serve -s dist/Degroupage -l ${PORT:-3000}
