@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000'; // Replace with your backend API URL
+  private apiUrl = 'https://degroup.herokuapp.com';
   private _isLoggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
