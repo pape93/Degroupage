@@ -15,7 +15,7 @@ export class AuthService {
     const loginData = { username, password };
 
     return new Promise((resolve, reject) => {
-      this.http.post(`${this.apiUrl}/login`, loginData).subscribe(
+      this.http.post(`${this.apiUrl}/api/login`, loginData).subscribe(
         (response: any) => {
           if (response.message === 'Logged in successfully') {
             this._isLoggedIn.next(true);
