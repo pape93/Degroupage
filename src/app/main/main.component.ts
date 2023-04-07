@@ -34,11 +34,14 @@ export class MainComponent implements OnInit, OnDestroy {
 
   async login(event: Event): Promise<void> {
     event.preventDefault();
+    console.log('Attempting to log in with:', { username: this.username, password: this.password });
     if (await this.authService.login(this.username, this.password)) {
+      console.log('Logged in successfully');
       this.username = '';
       this.password = '';
       this.errorMessage = '';
     } else {
+      console.log('Login failed');
       this.errorMessage = 'Invalid username or password';
     }
   }
