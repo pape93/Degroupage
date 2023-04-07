@@ -19,7 +19,7 @@ connection.once('open', () => {
 
 const apiRouter = express.Router();
 
-apiRouter.post('/login', async (req, res) => {
+apiRouter.post('/api/login', async (req, res) => {
   const { username, password } = req.body;
 
   console.log('Received login request:', { username, password });
@@ -30,15 +30,20 @@ apiRouter.post('/login', async (req, res) => {
     console.log('Found user:', user);
 
     if (!user) {
+      console.log('User not found');
       return res.status(400).json({ message: 'Invalid username or password' });
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
+    console.log('Is password valid:', isPasswordValid);
+
     if (!isPasswordValid) {
+      console.log('Password is invalid');
       return res.status(400).json({ message: 'Invalid username or password' });
     }
 
+    console.log('Login successful');
     res.status(200).json({ message: 'Logged in successfully' });
   } catch (error) {
     console.error('Server error:', error);
