@@ -1,41 +1,28 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://degroup.herokuapp.com';
-  private _isLoggedIn = new BehaviorSubject<boolean>(false);
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  public isLoggedIn = this.loggedIn.asObservable();
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Promise<boolean> {
-    const loginData = { username, password };
-
-    return new Promise((resolve, reject) => {
-      this.http.post(`${this.apiUrl}/api/login`, loginData).subscribe(
-        (response: any) => {
-          if (response.message === 'Logged in successfully') {
-            this._isLoggedIn.next(true);
-            resolve(true);
-          } else {
-            resolve(false);
-          }
-        },
-        (error) => {
-          reject(error);
-        }
-      );
-    });
+    return this.http.post<any>('https://degroup.herokuapp.com/api/login', { username, password })
+      .pipe(
+        tap(() => this.loggedIn.next(true))
+      )
+      .toPromise()
+      .then(() => true)
+      .catch(() => false);
   }
 
   logout(): void {
-    this._isLoggedIn.next(false);
-  }
-
-  get isLoggedIn(): BehaviorSubject<boolean> {
-    return this._isLoggedIn;
+    this.loggedIn.next(false);
   }
 }
