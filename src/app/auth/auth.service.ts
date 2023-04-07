@@ -13,6 +13,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Promise<boolean> {
+    console.log('I am in src/app/auth/auth.service.ts file');
     return this.http.post<any>('https://degroup.herokuapp.com/api/login', { username, password })
       .pipe(
         tap(() => this.loggedIn.next(true))
