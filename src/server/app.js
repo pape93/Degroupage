@@ -44,6 +44,13 @@ app.post('/login', async (req, res) => {
     }
   });
   
+// Serve static files from the Angular app
+app.use(express.static(path.join(__dirname, '../../dist/degroupage')));
+
+// Handle any other routes (this should be the last route)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../dist/degroupage/index.html'));
+});
 
 const PORT = process.env.PORT || 5000;
 
